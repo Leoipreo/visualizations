@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>Vizualizimi i të Dhënave: Shërbimet Sociale dhe Familjare</title>
+
+    <script type="text/javascript" src="lib/d3.js"></script>
+    <script type="text/javascript" src="lib/d3.geo.js"></script>
+    <script type="text/javascript" src="lib/d3.geom.js"></script>
+    <script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="lib/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui-1.8.17.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-alert.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-button.js"></script>
+    <script type="text/javascript" src="lib/bootstrap-tooltip.js"></script>
+
+    <link rel="stylesheet" href="resources/css/bootstrap.css" type="text/css" >
+    <link rel="stylesheet" href="resources/css/colorbrewer.css" type="text/css" />
+    <link rel="stylesheet" href="resources/css/jquery-ui-1.8.17.css" type="text/css" />
+
+    <link rel="stylesheet" href="visionyc.css" type="text/css" />
+    <script type="text/javascript" src="visionyc.js"></script>
+  </head>
+  <body>
+    <div class="navbar" id="navigation">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">Vizualizimi i të Dhënave: Shërbimet Sociale dhe Familjare</a>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2" align="center">
+          <div class="row">
+            <form>
+              <fieldset>
+                <!-- I feel bad about this hack.  Chrome won't do a file dialog
+                     unless it's visible, so I need to make it "hidden" without
+                     actually hiding it :( -->
+                <div class="clearfix">
+                  <input id="dummy-file" type="file" style="position: absolute; top: -50px; z-index: -1" accept="application/json" />
+                </div>
+                <div class="clearfix">
+               <div class="language">
+
+<select id="selectMe" >
+    <option value="1" selected="selected">Shqip</option>
+    <option value="2">English</option>
+    <option value="3">Srpski</option>
+</select></div>
+
+<div class="clearfix">
+  <p class="help-block">Zgjedh Indikatorin</p>
+                  <select id="data-select" disabled="true" >
+                <!--     <option id="1" value="data/d1.json,Reds">Te dhenat mbi cenueshmerine social per komuna</option> -->
+                    <option id="2" value="data/d2.json,Purples">Rreziqet dhe cenueshmerit gjate Ciklit te Jetes: femijet</option>
+                    <option id="3" value="data/d3.json,Oranges">Te dhenat mbi cenueshmerine sociale per komuna</option>
+                    <option id="4" value="data/d4.json,Greens">Standardet e uleta te jeteses dhe mungesat ekonomike</option>
+                    <option id="5" value="data/d5.json,Blues">Pa siguria e te ardhurave</option>
+                    <option id="6" value="data/d6.json,Reds">Cenueshmeri tjera dhe rreziqe te perjashtimit shoqeror</option>
+                  </select> </div>
+
+
+                  
+                </div>
+                <div class="clearfix">
+                  <button id="load-button" class="btn btn-primary" type="button" disabled="true">Ngarko</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div class="row" style="padding: 10px">
+            <form>
+              <fieldset>
+                <div class="clearfix">
+                  
+                  <p class="help-block2">Zgjedh Domenin</p>
+                  <div id="feature-types"></div>
+                  
+                </div>
+                <div class="clearfix" style="display:none;">
+                  <p class="help-block">Quantization Scale</p>
+                  <select id="quantize-types">
+                    <option value="quantile">Quantile</option>
+                    <option value="linear">Linear</option>
+                    <option value="log">Logarithmic</option>
+                    <option value="pow">Square Root</option>
+                  </select>
+                </div>
+                <!-- <div class="clearfix">
+                  <p class="help-block">Buckets: <span id="choropleth-count">9</span></p>
+                  <div id="slider"></div>
+                </div> -->
+            <div class="clearfix">
+                 
+
+
+
+  
+                </div>
+              </fieldset>
+            </form>
+          </div>
+
+        </div>
+
+          <div id="gifdiv" style="position:absolute; top:200px; left:650px;">
+                <img src="ajax-loader.gif">
+         </div>
+
+
+                     <div class="span-legend" style="margin-left:250px">
+<!-- <div id="legend" class="group">
+<ul>
+<li><div class="button24"></div> &nbsp; &nbsp;    0.8 - 1.0</li>
+<li><div class="button23"></div>  &nbsp; &nbsp;   0.6 - 0.8</li>
+<li><div class="button22"></div>  &nbsp; &nbsp;   0.4 - 0.6</li>
+<li><div class="button21"></div>&nbsp;  &nbsp;    0.2 - 0.4</li>
+<li><div class="button20"></div> &nbsp;  &nbsp;   0.01 - 0.2</li>
+<li><div class="button19"></div>  &nbsp;  &nbsp;   0</li>
+</ul>
+</div> -->
+
+<div id="legend2" class="group2">
+<ul>
+<li><div class="button30"></div> &nbsp; &nbsp;    0.8 - 1.0</li>
+<li><div class="button29"></div>  &nbsp; &nbsp;   0.6 - 0.8</li>
+<li><div class="button28"></div>  &nbsp; &nbsp;   0.4 - 0.6</li>
+<li><div class="button27"></div>&nbsp;  &nbsp;    0.2 - 0.4</li>
+<li><div class="button26"></div> &nbsp;  &nbsp;   0.01 - 0.2</li>
+<li><div class="button25"></div>  &nbsp;  &nbsp;   0</li>
+</ul>
+</div>  
+
+ <div id="legend3" class="group3">
+<ul>
+<li><div class="button18"></div> &nbsp; &nbsp;    0.8 - 1.0</li>
+<li><div class="button17"></div>  &nbsp; &nbsp;   0.6 - 0.8</li>
+<li><div class="button16"></div>  &nbsp; &nbsp;   0.4 - 0.6</li>
+<li><div class="button15"></div>&nbsp;  &nbsp;    0.2 - 0.4</li>
+<li><div class="button14"></div> &nbsp;  &nbsp;    0.01 - 0.2</li>
+<li><div class="button13"></div>  &nbsp;  &nbsp;   0</li>
+</ul>
+</div>
+
+<div id="legend4" class="group4">
+<ul>
+<li><div class="button12"></div> &nbsp; &nbsp;    0.8 - 1.0</li>
+<li><div class="button11"></div>  &nbsp; &nbsp;   0.6 - 0.8</li>
+<li><div class="button10"></div>  &nbsp; &nbsp;   0.4 - 0.6</li>
+<li><div class="button9"></div>&nbsp;  &nbsp;    0.2 - 0.4</li>
+<li><div class="button8"></div> &nbsp;  &nbsp;    0.01 - 0.2</li>
+<li><div class="button7"></div>  &nbsp;  &nbsp;   0</li>
+</ul>
+</div>
+
+<div id="legend5" class="group5">
+<ul>
+<li><div class="button6"></div> &nbsp; &nbsp;    0.8 - 1.0</li>
+<li><div class="button5"></div>  &nbsp; &nbsp;   0.6 - 0.8</li>
+<li><div class="button4"></div>  &nbsp; &nbsp;   0.4 - 0.6</li>
+<li><div class="button3"></div>&nbsp;  &nbsp;    0.2 - 0.4</li>
+<li><div class="button2"></div> &nbsp;  &nbsp;    0.01 - 0.2</li>
+<li><div class="button1"></div>  &nbsp;  &nbsp;   0</li>
+</ul>
+</div>
+
+ <div id="legend6" class="group6">
+<ul>
+<li><div class="button36"></div> &nbsp; &nbsp;    0.8 - 1.0</li>
+<li><div class="button35"></div>  &nbsp; &nbsp;   0.6 - 0.8</li>
+<li><div class="button34"></div>  &nbsp; &nbsp;   0.4 - 0.6</li>
+<li><div class="button33"></div>&nbsp;  &nbsp;    0.2 - 0.4</li>
+<li><div class="button32"></div> &nbsp;  &nbsp;    0.01 - 0.2</li>
+<li><div class="button31"></div>  &nbsp;  &nbsp;   0</li>
+</ul>
+</div>  
+</div>
+        <div class="span10">
+          <div class="row-fluid" id="chart"></div>
+          <div class="row-fluid" id="controls">
+           
+          </div>
+        </div>
+      </div>
+
+       <div class="span-desc">
+       <p>  Ky domen kombinon aspektet kryesore të informatave të disponueshme të cenueshmërisë sociale specifike për fëmijë: ambienti familjar dhe analiza familjare; aftësia e prindërve për të ofruar kujdesin e duhur (përfshirë edhe shpenzimet për fëmijë). </p>
+        </div>
+
+
+      <div class="span-footer">
+       <span class="footer-text">Të dhënat u vizualizuan nga </span> <a href="http://www.kosovoinnovations.org" target="_blank"> <img src="logo-final.png"></a>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+          $('#selectMe,#data-select').change(function(){
+        //   alert(2);
+            var value = $("#selectMe").val();
+            var data_id = $("#data-select").find(":selected")[0].id;
+          //  alert (data_id);
+            if (value == 1)
+            {   
+                    $(document).attr("title", "Vizualizimi i të Dhënave: Shërbimet Sociale dhe Familjare");
+                  $('.brand').html("Vizualizimi i të Dhënave: Shërbimet Sociale dhe Familjare");
+                  $('.help-block').html("Zgjedh Indikator");
+                  $('.help-block2').html("Zgjedh Domenin");
+                  $('#load-button').text("Ngarko");
+                    $('.footer-text').html("Të dhënat u vizualizuan nga");
+                    $('.span-desc').html("This domain combines available information key aspects of child-specific social vulnerability: family environment and family breakdown; ability of parents to provide appropriate care (including sufficient spending per child). ");
+
+
+
+                $('#data-select option').each(function() {
+                  
+                  var desc = $('.span-desc p').text();
+
+                 switch ($(this).attr('id'))
+                  {
+                
+                   case '2': this.text = "Rreziqet dhe cenueshmerit gjate Ciklit te Jetes: femijet"; if(data_id == 2) $('.span-desc').html("Ky domen kombinon aspektet kryesore të informatave të disponueshme të cenueshmërisë sociale specifike për fëmijë: ambienti familjar dhe analiza familjare; aftësia e prindërve për të ofruar kujdesin e duhur (përfshirë edhe shpenzimet për fëmijë). ") ; 
+                             break;
+                   case '3': this.text = "Te dhenat mbi cenueshmerine sociale per komuna"; if(data_id == 3) $('.span-desc').html(" Ky domen fokusohet në rreziqet kryesore për të moshuar që kanë implikime vendimtare për mirëqenie sociale: pjesa e të moshuarve që jetojnë vetëm dhe që potencialisht mund të kërkojnë përkujdesje afatgjatë. ") ; 
+                             break;
+                   case '4': this.text = "Standardet e uleta te jeteses dhe mungesat ekonomike";if(data_id == 4) $('.span-desc').html("Ky domen mbulon të dhënat e disponueshme rreth mundësisë së popullit për të përmbushur nevojat e tyre themelore ekonomike (banim të sigurt, ujë të pijshëm, ngrohje dhe qasje në banjo në shtëpi). ") ; 
+                             break;
+                   case '5': this.text = "Pa siguria e te ardhurave";if(data_id == 5) $('.span-desc').html("Të ardhurat e pasigurta janë njëri nga faktorët më të fortë të cenueshmërisë sociale në tërë Kosovës. Të dhënat e disponueshme për këtë domen janë bazuar në Hulumtimin e Buxhetit të Ekonomive Familjare dhe përshkruajnë strukturën e të ardhurave të ekonomive familjare (sa i përket rolit të burimeve relativisht jostabile të të ardhurave, siç janë puna ditore ose lojërat e fatit); si dhe rënia katastrofike e shpenzimeve medicinale në komunitet. ") ; 
+                             break;
+                  case '6': this.text = "Cenueshmeri tjera dhe rreziqe te perjashtimit shoqeror";if(data_id == 6) $('.span-desc').html("Ky domen i larmishëm kombinon një varg pasigurish me implikime të forta për kërkesën për shërbime sociale, përfshirë këtu braktisjen e shkollës, arsimimin e ultë, keqpërdorimin e substancave, dhe masat e kriminalitetit. Ai gjithashtu përfshinë edhe pjesën e popullatës me nevoja të veçanta (e cila e rritë kërkesën për shërbime sociale). ") ; 
+                             break;
+                   default:  this.text = ("Unknown grade<br />")
+                  }
+                
+});
+
+            }
+             if (value == 2)
+            {
+              $(document).attr("title", "Data Visualization: Social and Family Services");
+              $('.brand').html("Data Visualization: Social and Family Services");
+              $('.help-block').html("Choose Indicator");
+              $('.help-block2').html("Choose Domain");
+              $('#load-button').text("Load");
+               $('.footer-text').html("Data was visualized by ");
+               $('.span-desc').html("Anglishte");
+
+                $('#data-select option').each(function() {
+                 this.text = "english";
+                 switch ($(this).attr('id'))
+                  {
+               
+                   case '2': this.text = "Life-cycle risks and vulnerabilities: children"; if(data_id == 2) $('.span-desc').html("This domain combines available information key aspects of child-specific social vulnerability: family environment and family breakdown; ability of parents to provide appropriate care (including sufficient spending per child). ") ; 
+                             break;
+                   case '3': this.text = "Social risks and vulnerabilities: elderly"; if(data_id == 3) $('.span-desc').html("This domain is focused on key risks to elderly with critical implications for social welfare: the share of elderly people living alone and potentially requiring long-term care.  ") ; 
+                             break;
+                   case '4': this.text = "Low living standards and economic deprivation"; if(data_id == 4) $('.span-desc').html("This domain covers available data on the ability of the population to cover their basic economic needs (safe housing; running water; heating and access to bathroom in the house).") ; 
+                             break;
+                   case '5': this.text = "Income Insecurity"; if(data_id == 5) $('.span-desc').html("Insecure income represents one of the strongest factors of social vulnerability across Kosovo. Available statistics on this domain is based on the Household Budget Survey, and describes the structure of household incomes (in terms of the role of relatively unstable sources of income such as per diem work or gambling); as well as the incidence of catastrophic healthcare expenditures in the community. ") ; 
+                             break;
+                  case '6': this.text = "Other vulnerabilities and risks of social exclusion"; if(data_id == 6) $('.span-desc').html("This diverse domain combines a range of insecurities with strong implications for social service demand, including school dropouts, low education, substance abuse, and measures of criminality. It also includes share of population with disabilities (which increases demand for social services).") ; 
+                             break;
+                   default:  this.text = ("Unknown grade<br />")
+                  }
+            //     alert($(this).text());
+});
+
+            }
+             if (value == 3)
+            {
+                 $(document).attr("title", "Vizualizacija Podataka: Socijalne i Porodične Usluge");
+              $('.brand').html("Vizualizacija Podataka: Socijalne i Porodične Usluge");
+              $('.help-block').html("Izaberete Indikator");
+                   $('.help-block2').html("Izaberete Domain");
+                   $('#load-button').text("Opteri");
+                   $('.footer-text').html("Podaci su vizualizirani od");
+                    $('.span-desc').html("Shkinishte");
+
+                $('#data-select option').each(function() {
+                 this.text = "serbian";
+                  switch ($(this).attr('id'))
+                  {
+                 
+                   case '2': this.text = "Rizici i ugrozenost zivotnog ciklusa: deca";  if(data_id == 2) $('.span-desc').html("Ova oblast kombinuje raspoložive informacije o ključnim aspektima socijalne ugroženost karakteristične za decu: porodično okruženje i raspad porodice; sposobnost roditelja da obezbede odgovarajuću negu (uključujući dovoljnu potrošnju po detetu).  ") ; 
+                             break;
+                   case '3': this.text = "Rizici i ugrozenost zivotnog ciklusa: starija lica";  if(data_id == 3) $('.span-desc').html("Ova oblast je usmerena na ključne rizike za starija lica sa kritičnim posledicama po socijalnu zaštitu: udeo starijih ljudi koji žive sami i mogućnost zahtevanja dugoročne nege.  ") ; 
+                             break;
+                   case '4': this.text = "Niski zivotni standardi i ekonomsko uskracivanje";  if(data_id == 4) $('.span-desc').html("Ova oblast pokriva raspoložive podatke o sposobnosti stanovništva da pokrije svoje osnovne ekonomske potrebe (bezbedno stanovanje; tekuća voda, grejanje i kupatilo u kući).   ") ; 
+                             break;
+                   case '5': this.text = "Nesigurni prihod";  if(data_id == 5) $('.span-desc').html("Nesiguran prihod predstavlja jedan od najjačih faktora socijalne ugroženosti na Kosovu. Raspoloživi statistički podaci o ovoj oblasti zasnivaju se na Anketi o budžetu domaćinstava, i opisuju strukturu prihoda domaćinstva (u smislu uloge relativno nestabilnih izvora prihoda kao što su dnevnice ili kockanje), kao i česte katastrofalne zdravstvene troškove u zajednici.  ") ; 
+                             break;
+                  case '6': this.text = "Ostala ugrozenost i rizici od socijalnog iskljucenja";  if(data_id == 6) $('.span-desc').html("Ova raznolika oblast kombinuje niz nesigurnosti sa jakim posledicama po potražnju socijalnih usluga, uključujući i napuštanje škole, nizak nivo obrazovanja, zloupotrebu supstanci i mere kriminaliteta. Ona uključuje i udeo stanovnika sa invaliditetom (što povećava potražnju za socijalnim uslugama).   ") ; 
+                             break;
+                   default:  this.text = ("Unknown grade<br />")
+                  }
+});
+
+            }
+
+          });
+
+
+
+              $(document).ready(function() {
+               //   alert("asd");
+                
+
+              
+                $('.group2').show();
+                $('.group3').hide();
+                $('.group4').hide();
+                $('.group6').hide();
+                $('.group5').hide();
+                $('#load-button').click(function(){
+                      // $('.group').show();
+                      var id = $('#data-select').find(':selected').attr('id');
+                     
+                     if(id==1)
+                     {
+                        $('.group2').hide();
+                        $('.group3').hide();
+                        $('.group4').hide();          
+                        $('.group5').hide();
+                        $('.group6').hide();
+                        $('.group').show();
+                     }
+
+                     if(id==2)
+                     {
+                        $('.group').hide();
+                        $('.group3').hide();
+                        $('.group4').hide();
+                        $('.group5').hide();
+                        $('.group6').hide();
+                        $('.group2').show();
+                     }
+
+                     if(id==3)
+                     {
+                      $('.group').hide();
+                       $('.group2').hide();
+                       $('.group4').hide();
+                       $('.group5').hide();
+                       $('.group6').hide();
+                       $('.group3').show();
+                     }
+
+                     if(id==4)
+                     {
+                        $('.group').hide();
+                        $('.group2').hide();
+                        $('.group3').hide();      
+                        $('.group5').hide();
+                        $('.group6').hide();
+                        $('.group4').show();
+                     }
+
+                     if(id==5)
+                     {
+                        $('.group').hide();
+                        $('.group2').hide();
+                        $('.group3').hide();      
+                        $('.group4').hide();
+                        $('.group6').hide();
+                        $('.group5').show();
+                     }
+
+                     if(id==6)
+                     {
+                       $('.group').hide();
+                       $('.group2').hide();
+                       $('.group3').hide();
+                       $('.group4').hide();
+                       $('.group5').hide();
+                       $('.group6').show();
+                     }
+
+                })
+
+              });
+
+    
+    </script>
+  </body>
+</html>

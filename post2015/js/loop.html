@@ -1,0 +1,106 @@
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+function loop() {
+var flows = 
+{
+   "Prizren":{
+      "Male":{
+         "sixteen_seventeen":{
+            "q1":{
+               "Edukimi":39
+            },
+            "q2":{
+               "Edukimi":20
+            },
+            "q3":{
+               "Edukimi":20
+            }
+         },
+         "eighteen_nineteen":{
+            "q1":{
+               "Edukimi":39
+            },
+            "q2":{
+               "Edukimi":20
+            },
+            "q3":{
+               "Edukimi":20
+            }
+         },
+         "twenty_twentytwo":{
+            "q1":{
+               "Edukimi":39
+            },
+            "q2":{
+               "Edukimi":20
+            },
+            "q3":{
+               "Edukimi":20
+            }
+         }
+      },
+      "Female":{
+         "sixteen_seventeen":{
+            "q1":{
+               "Edukimi":39
+            },
+            "q2":{
+               "Edukimi":20
+            },
+            "q3":{
+               "Edukimi":20
+            }
+         },
+         "eighteen_nineteen":{
+            "q1":{
+               "Edukimi":39
+            },
+            "q2":{
+               "Edukimi":20
+            },
+            "q3":{
+               "Edukimi":20
+            }
+         },
+         "twenty_twentytwo":{
+            "q1":{
+               "Edukimi":39
+            },
+            "q2":{
+               "Edukimi":20
+            },
+            "q3":{
+               "Edukimi":20
+            }
+         }
+      }
+   }
+}
+
+jQuery(document).ready(function($) {
+  $("#Male").on('click',function() {
+  for (var s in flows) {
+          // var source = flows[s];
+          // console.log(source.children);
+          // console.log(flows[s]);
+          //alert(flows["Hello"].A);
+          // console.log(source.male);
+          // source.flow = 0;
+          // alert(item + " : " + myObject[item]);
+          // var $value = document.getElementById("Male");
+          // var $commentNode = $value.firstChild;
+          // console.log($commentNode.nodeValue);
+          var $obj = $(this).val();
+          var $other = "sixteen_seventeen";
+          var $q1 = "q1";
+          console.log(flows[s][$obj][$other][$q1]);
+          // console.log(flows[s]);
+      }
+  });
+});
+}
+
+loop();
+</script>
+
+<input type="button" value="Male" id="Male" class="Male" title="Male">

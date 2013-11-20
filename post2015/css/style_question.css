@@ -1,0 +1,68 @@
+
+* { margin: 0; padding: 0; outline:0; }
+
+
+
+
+a { color: #0252aa; text-decoration: none; cursor:pointer; }
+a:hover { text-decoration: underline; }
+
+a img { border: 0; }
+
+
+
+.shell { width: 940px; margin: 0 auto; }
+
+
+
+/* 
+	MAIN-NAV
+*/
+
+
+
+.main-nav ul li.question1-cicle { top: 378px; left: 616px; }
+ul li.question1-cicle em { background: #5396d1; }
+
+.main-nav ul li.question2-cicle { top: 378px; left: 616px; }
+ul li.question2-cicle em { background: #234521; }
+
+.main-nav ul li.question3-cicle { top: 378px; left: 616px; }
+ul li.question3-cicle em { background: #bf1e2d; }
+/* 
+	END MAIN-NAV
+*/
+
+
+
+#question-buttons ul { float: left; display: inline; list-style: none; list-style-position: outside; width: 960px; padding-top: 20px; }
+#question-buttons ul li { float: left; display: inline; width: 60px; padding-right: 230px; position: relative;  }
+#question-buttons ul li a { width: 60px; display: block; font-size: 14px; color: #fff; font-family: "museo", arial, sans-serif; font-weight: bold; line-height: 24px; text-decoration: none; position: relative; text-align: center; }
+#question-buttons ul li a span { display: block; position: relative; z-index: 4; margin-top: 7px; width: 232px; font-size: 1.5em; margin-left: 13px;;}
+#question-buttons ul li a img { position: relative; z-index: 4; margin-left: 100px;}
+#question-buttons ul li a em { z-index: 2; position: absolute; top: -10px; left: -10px; height: 160px; width: 272px; opacity: 0.8; }
+#question-buttons ul li a em { 
+	-moz-opacity: 0.8;
+	filter:alpha(opacity=80);
+	-moz-border-radius: 44px;
+	-webkit-border-radius: 44px;
+	border-radius: 44px;
+	border: 5px solid #fff;
+	-webkit-transition: all 0.2s ease-in-out;
+	-webkit-transform: translate3d(0,0,0);
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+}
+#question-buttons ul li a:hover em {
+	-moz-transform: scale(1.24, 1.24);
+	-webkit-transform: scale(1.24, 1.24);
+	-o-transform: scale(1.24, 1.24);
+}
+
+#question-buttons ul li.livelihood-cicle a { font-size: 10px; }
+#question-buttons ul li.participate-cicle a { font-size: 10px; }
+#question-buttons ul li.rights-safety-cicle a { font-size: 10px; line-height: 14px; }
+#question-buttons ul li.learn-cicle { padding-right: 0; }
+
+
+

@@ -1,0 +1,243 @@
+/* CSS Document */
+
+h1, h2, h3, h4 h5{
+  color: #606060;
+  font-family: arial, san-serif;
+  font-weight: normal;  
+}
+
+h1 {
+  font-size: 30px;
+  font-family: arial, san-serif;
+  border: none;
+  padding: 10px;
+  margin: 0px;
+  line-height: 35px;
+	position: relative;
+  text-decoration:none;
+}
+
+h4 {
+  float: left;
+  font-size: 14px;
+  font-family: arial, san-serif;
+  color: #606060;
+  font-weight: normal;
+  border: none;
+  padding: 10px;
+  margin: 0px;
+	position: relative;
+  text-decoration:upercase;
+}
+h5 {
+  float: right;
+  font-size: 14px;
+  font-family: arial, san-serif;
+  color: #4d96d1;
+  font-weight: normal;
+  border: none;
+  padding: 10 0 10 00px;
+  margin: 0px;
+	position: relative;
+  text-decoration:upercase;
+}
+
+
+#postDispBoxBG {
+  width:215px;
+	height:250px;
+	background-color:#ffffff;
+  padding: 0px;
+  float: left;
+ }
+
+.postDispBox {
+  width:215px;
+	height:250px;
+  padding: 0px 10px 0px 10px;
+  float: left;
+ } 
+ 
+
+.PDSborder {
+  position: relative; 
+  border-bottom-style:dotted;
+  border-bottom: 1px dotted #666666;
+  float: left;
+  width: 190px;
+  margin-bottom: 10px;
+  padding: 0px;
+  
+}
+
+.postDispBox ul {
+  width:215px;
+  float:left;
+  color: #606060;
+  font-family: arial, san-serif;
+  font-size: 12px;
+  line-height: 18px;
+  text-decoration: upercase;
+  margin: 0px;
+  padding: 15px 0 0 5px;
+  list-style: none;
+}
+
+.ulsector li{
+   padding: 5px;
+   border-bottom: 1px solid #cccccc;
+   width:175px;
+   float:left;
+}
+
+.ulsector .num li{
+   padding: 0px;
+   float: right;
+   color: #4d96d1;
+}
+
+.ulsector li a {
+   float:left;
+   padding:0px;
+   margin:0px;
+   color: #606060;
+   border:none;
+   text-decoration:none;
+}
+
+.ulsector #nr {
+  margin-left: 30%;
+  margin-top:-14%;
+  border-bottom: 0px;
+}
+
+.postDispBox a {
+  text-transform:upercase;
+  text-decoration: none; 
+  border:0px;
+	font-family: arial, sans-serif;
+	color:#606060;
+  padding:0px;
+  margin: 0px;
+
+}
+
+.postDispBox a:hover {
+  text-transform:uppercase;
+  text-decoration: none; 
+  border:0px;
+	font-family: arial, sans-serif;
+  color:#4d96d1;
+  padding:0px;
+  margin: 0px;
+}
+
+.buttonM {
+  width:215px;
+  height:30px;
+  float:left;
+  color: #606060;
+  font-family: arial, san-serif;
+  font-size: 12px;
+  text-transform:uppercase;
+  margin: 0px;
+  padding:5px 5px 5px 0px;
+  position:relative;
+}
+
+.buttonM img {
+  margin:auto;
+  padding: 0px 10px;
+}
+
+.buttonM p {
+  float:left;
+  color: #606060;
+  font-family: arial, san-serif;
+  font-size: 12px;
+  text-transform:uppercase;
+  margin: 0px;
+  padding:4px 0px 0px 33px;
+  position:absolute;
+}
+
+.buttonM a {
+  width:215px;
+  float:left;
+  color: #606060;
+  font-family: arial, san-serif;
+  font-size: 12px;
+  text-transform:uppercase;
+  margin: 0px;
+  padding-left:0px;
+}
+
+.buttonM #Female {
+  margin-left: 45%;
+  margin-top: -6%;
+}
+
+.buttonM a:hover {
+  width:215px;
+  float:left;
+  color: #4d96d1;
+  font-family: arial, san-serif;
+  font-size: 12px;
+  text-transform:uppercase;
+  margin: 0px;
+  padding-left:0px;
+}
+
+/* drop down box*/
+.buttonMSelect ul {
+    width: 215px;
+    font-family: Arial, Verdana;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.buttonMSelect ul li {
+    width: 79px;
+    display: block;
+    position: relative;
+    float: left;
+}
+.buttonMSelect li ul {
+    display: none;
+}
+.buttonMSelect .ulsector ul li a {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    border-top: 1px solid #ffffff;
+    padding: 5px 15px 5px 15px;
+    background: #1e7c9a;
+    margin-left: 1px;
+    white-space: nowrap;
+}
+.buttonMSelect ul li a:hover {
+background: #3b3b3b;
+}
+.buttonMSelect li:hover ul {
+    display: block;
+    position: absolute;
+}
+.buttonMSelect li:hover li {
+    float: none;
+    font-size: 11px;
+}
+.buttonMSelect li:hover a { background: #3b3b3b; }
+.buttonMSelect li:hover li a:hover {
+    background: #1e7c9a;
+}
+/* drop down box end*/
+
+.agegroup {
+  display: none;
+  position: absolute;
+}
+
+
+
+
